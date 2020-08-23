@@ -5,6 +5,7 @@ const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
 
 const app = express()
+const port = process.env.PORT || 3000 //provide || 3000 for local or in case process.env.PORT doesn't provide us anything
 
 const publicDirectoryClass = path.join(__dirname, '../public')
 const viewsPath = path.join(__dirname, '../templates/views')
@@ -89,7 +90,8 @@ app.get('*', (req,res) =>{
     })
 })
 
-//to start the server, we specify a port
-app.listen(3000, () =>{
+//to start the server, we specify a port, e.g. 3000 on our local machine
+//when running on heroku, heroku will use a dynamic port so we need to use process.env.PORT as this is what heroku will use. 
+app.listen(port, () =>{
     console.log('Server is up on port 3000') //this message can only be seen in the console
 })
